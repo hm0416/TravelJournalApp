@@ -59,7 +59,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("Login part", "OnStop() method started");
+        Log.d("App started", "onStart() method started");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("User navigated back.", "onResume() method started");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("User navigated away.", "onPause() method started");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("Activity not visible.", "onStop() method started");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("App process killed.", "onDestroy() method started");
     }
 
     private boolean isAccountValid(String user, String pass) {
