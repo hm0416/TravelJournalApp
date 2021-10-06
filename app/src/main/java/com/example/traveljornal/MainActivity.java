@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 String inputUsername = username.getText().toString();
                 String inputPass = password.getText().toString();
 
+                //used this video for login code https://www.youtube.com/watch?v=LCrhddpsgKU&list=WL&index=2&t=1080s
                 if (inputUsername.isEmpty() || inputPass.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please enter a username and password.", Toast.LENGTH_SHORT).show();
                 } else {
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("User navigated back.", "onResume() method started");
+        Log.d("User navigated back", "onResume() method started");
     }
 
     @Override
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
         if (user.equals(TestUser) && pass.equals(TestPass)) {
             return true;
         }
-
         return false;
     }
 }
