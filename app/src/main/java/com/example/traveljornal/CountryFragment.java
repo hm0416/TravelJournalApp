@@ -63,4 +63,11 @@ public class CountryFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_country, container, false);
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("Fragment destroyed", "OnDestroyView() method launched");
+
+    }
 }
