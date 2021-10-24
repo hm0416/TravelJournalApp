@@ -12,5 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Dashboard"
         tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="276dp" />
+        tools:layout_editor_absoluteY="276dp"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

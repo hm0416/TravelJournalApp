@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,16 +16,25 @@ public class MainActivity extends AppCompatActivity {
     private Button login;
     private String TestUser = "Admin";
     private String TestPass = "12345";
+    private Button register;
     boolean isAccValid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        register = findViewById(R.id.registerButton);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
         username = (EditText) findViewById(R.id.usernameTextField);
         password = (EditText) findViewById(R.id.passTextField);
         login = findViewById(R.id.loginButton);
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private boolean isAccountValid(String user, String pass) {
         if (user.equals(TestUser) && pass.equals(TestPass)) {
             return true;
         }
-
         return false;
     }
 }
