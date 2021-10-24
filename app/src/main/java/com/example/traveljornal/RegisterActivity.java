@@ -36,6 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String inputFullName = fullName.getText().toString();
                 String inputEmail = email.getText().toString();
                 String inputPassword = password.getText().toString();
+                if (inputUserID.isEmpty() || inputFullName.isEmpty() || inputEmail.isEmpty() ||inputPassword.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "Please enter all details.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
