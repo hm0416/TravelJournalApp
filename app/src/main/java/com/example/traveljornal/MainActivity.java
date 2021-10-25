@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity{
 
         login = findViewById(R.id.loginButton);
 
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,12 +114,8 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 // code to go to the register activity
                 startActivityForResult(new Intent(MainActivity.this, UpdateActivity.class), 100);
-//                initRecyclerView();
-//                loadUserList();
             }
         });
-
-
 
     }
 
