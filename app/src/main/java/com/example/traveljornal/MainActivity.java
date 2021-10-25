@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.traveljornal.databaseclasses.AppDatabase;
-import com.example.traveljornal.databaseclasses.DatabaseAccessInterface;
 import com.example.traveljornal.databaseclasses.User;
 
 import java.util.List;
@@ -32,6 +30,7 @@ public class MainActivity extends AppCompatActivity{
     private String TestUser = "Admin";
     private String TestPass = "12345";
     private Button register;
+    private Button update;
     FragmentManager fm;
     boolean isAccValid = false;
 
@@ -81,6 +80,16 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        update = findViewById(R.id.updateButton);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // code to go to the register activity
+                startActivityForResult(new Intent(MainActivity.this, UpdateActivity.class), 100);
+//                initRecyclerView();
+//                loadUserList();
+            }
+        });
 
         deleteUser = findViewById(R.id.deleteUserButton);
         deleteUser.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +109,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void initRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);

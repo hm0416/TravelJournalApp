@@ -21,10 +21,10 @@ public class UpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_user);
+        setContentView(R.layout.activity_update);
         userId = (EditText) findViewById(R.id.userTextFieldForUpdate);
         password = (EditText) findViewById(R.id.passwordTextFieldForUpdate2);
-        submit = findViewById(R.id.doneButton);
+        submit = findViewById(R.id.doneButtonForUpdate);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
