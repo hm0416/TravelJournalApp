@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.traveljornal.databaseclasses.AppDatabase;
+import com.example.traveljornal.databaseclasses.User;
+import com.example.traveljornal.databaseclasses.DatabaseAccessInterface;
 public class RegisterActivity extends AppCompatActivity {
 
     private Button submit;
@@ -39,7 +42,21 @@ public class RegisterActivity extends AppCompatActivity {
                 if (inputUserID.isEmpty() || inputFullName.isEmpty() || inputEmail.isEmpty() ||inputPassword.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Please enter all details.", Toast.LENGTH_SHORT).show();
                 }
+                saveNewUser(inputUserID, inputFullName, inputEmail, inputPassword);
+
+
             }
         });
+    }
+
+    private void saveNewUser(String userID, String fullName, String email, String password) {
+        AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
+        User user =  new User();
+        user.FullName = fullName;
+        user.email = email;
+        user.password = password;
+        user.id = userID;
+        db.DatabaseAccessInterface().addUser(user);
+        finish();
     }
 }

@@ -9,10 +9,10 @@ import java.util.List;
     @Dao
     public interface DatabaseAccessInterface {
         @Insert
-        public void addUser(User user);
+        public void addUser(User...users);
 
         @Query("Select * from users")
-        public List<User> readUser();
+        public List<User> getAllUsers();
 
         @Update
         public void updateData(User user);

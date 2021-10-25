@@ -9,11 +9,15 @@ import androidx.room.PrimaryKey;
 public class User {
     @PrimaryKey(autoGenerate = false)
     @NonNull
-    private String id;
+    public String id;
     @ColumnInfo(name = "name")
-    private String FullName;
+    public String FullName;
     @ColumnInfo(name = "password")
-    private String password;
+    public String password;
+    @ColumnInfo(name = "email")
+    public String email;
+    @ColumnInfo(name = "username")
+    public String username;
 
     public String getId() {
         return id;
@@ -55,8 +59,5 @@ public class User {
         this.username = username;
     }
 
-    @ColumnInfo(name = "email")
-    private String email;
-    @ColumnInfo(name = "username")
-    private String username;
+
 }
