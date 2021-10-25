@@ -62,8 +62,10 @@ public class MainActivity extends AppCompatActivity{
 
                 fragmentManager.beginTransaction()
                         .replace(R.id.content,  new DeleteUserFragment())
-                        .addToBackStack("null") // name can be null
+                        .addToBackStack("fragment_delete_user") // name can be null
                         .commit();
+                        username.setVisibility(View.GONE);
+                        password.setVisibility(View.GONE);
             }
         });
 
