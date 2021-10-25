@@ -41,34 +41,9 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         //appDatabase = Room.databaseBuilder(this,AppDatabase.class,"userinfo").allowMainThreadQueries().build();
 
-        register = findViewById(R.id.registerButton);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // code to go to the register activity
-                startActivityForResult(new Intent(MainActivity.this, RegisterActivity.class), 100);
-                initRecyclerView();
-                loadUserList();
-            }
-        });
         username = (EditText) findViewById(R.id.usernameTextField);
         password = (EditText) findViewById(R.id.passTextField);
-
-        deleteUser = findViewById(R.id.deleteUserButton);
-        deleteUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content,  new DeleteUserFragment())
-                        .addToBackStack("null") // name can be null
-                        .commit();
-            }
-        });
-
         login = findViewById(R.id.loginButton);
-
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +69,32 @@ public class MainActivity extends AppCompatActivity{
             }
 
         });
+
+        register = findViewById(R.id.registerButton);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // code to go to the register activity
+                startActivityForResult(new Intent(MainActivity.this, RegisterActivity.class), 100);
+                initRecyclerView();
+                loadUserList();
+            }
+        });
+
+
+        deleteUser = findViewById(R.id.deleteUserButton);
+        deleteUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content,  new DeleteUserFragment())
+                        .addToBackStack("null") // name can be null
+                        .commit();
+            }
+        });
+
 
 
     }
