@@ -41,11 +41,8 @@ public class DeleteUserFragment extends Fragment {
                 db.DatabaseAccessInterface().deleteData(user);
             }
 
-
-
         });
         return view;
-
     }
 
 }

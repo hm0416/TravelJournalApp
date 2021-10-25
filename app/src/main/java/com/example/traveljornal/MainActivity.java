@@ -59,8 +59,9 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
+
                 fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container,  new DeleteUserFragment())
+                        .replace(R.id.content,  new DeleteUserFragment())
                         .addToBackStack("null") // name can be null
                         .commit();
             }
