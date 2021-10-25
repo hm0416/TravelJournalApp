@@ -1,30 +1,55 @@
 package com.example.traveljornal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.Fragment;
 
-import android.content.Intent;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class DashboardActivity extends AppCompatActivity {
 
-//    private Button update;
+    Button mapBtn;
+    Button country;
+    TextView search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-//        update = findViewById(R.id.updateButton);
-//        update.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // code to go to the register activity
-//                startActivityForResult(new Intent(DashboardActivity.this, UpdateActivity.class), 100);
-////                initRecyclerView();
-////                loadUserList();
-//            }
-//        });
+        search = (TextView) findViewById(R.id.searchTxt);
+        country = (Button) findViewById(R.id.countryBtn) ;
+        country.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fr = new CountryFragment();
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.container, fr).addToBackStack("fragment_country").commit();
+                country.setVisibility(View.GONE);
+                search.setVisibility(View.GONE);
+
+            }
+        });
+
+        mapBtn = (Button) findViewById(R.id.mapButton);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fr = new MapsFragment();
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.map, fr).addToBackStack("fragment_maps").commit();
+//                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+//                fragmentTransaction.replace(R.id.map, fr);
+//                fragmentTransaction.commit();
+            }
+        });
     }
 }

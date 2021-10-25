@@ -10,9 +10,11 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.traveljornal.databaseclasses.AppDatabase;
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //appDatabase = Room.databaseBuilder(this,AppDatabase.class,"userinfo").allowMainThreadQueries().build();
+
+        Log.d("Login page", "OnCreate() method launched");
 
         register = findViewById(R.id.registerButton);
         register.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity{
                 String inputUsername = username.getText().toString();
                 String inputPass = password.getText().toString();
 
+                //used this video for login code https://www.youtube.com/watch?v=LCrhddpsgKU&list=WL&index=2&t=1080s
                 if (inputUsername.isEmpty() || inputPass.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please enter a username and password.", Toast.LENGTH_SHORT).show();
                 } else {
@@ -141,6 +146,36 @@ public class MainActivity extends AppCompatActivity{
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("App started", "onStart() method started");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("User navigated back", "onResume() method started");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("User navigated away.", "onPause() method started");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("Activity not visible.", "onStop() method started");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("App process killed.", "onDestroy() method started");
+    }
+
     private boolean isAccountValid(String user, String pass) {
         if (user.equals(TestUser) && pass.equals(TestPass)) {
             return true;
