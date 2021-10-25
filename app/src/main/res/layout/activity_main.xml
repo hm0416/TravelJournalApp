@@ -113,5 +113,15 @@
         app:layout_constraintTop_toBottomOf="@+id/deleteUserButton"
         app:layout_constraintVertical_bias="0.589" />
 
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="860dp"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent">
+    </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

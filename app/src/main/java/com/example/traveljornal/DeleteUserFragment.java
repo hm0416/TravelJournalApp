@@ -21,14 +21,12 @@ import com.example.traveljornal.databaseclasses.DatabaseAccessInterface;
 public class DeleteUserFragment extends Fragment {
     private EditText TxtUserID;
     private Button DeleteButton;
-    public DeleteUserFragment() {
 
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_delete_user, container, false);
-        TxtUserID = view.findViewById(R.id.txtView);
+        TxtUserID = view.findViewById(R.id.userIDTextField);
         DeleteButton = view.findViewById(R.id.deleteUserButton);
         DeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +38,6 @@ public class DeleteUserFragment extends Fragment {
                 user.setId(id);
                 db.DatabaseAccessInterface().deleteData(user);
             }
-
         });
         return view;
     }
