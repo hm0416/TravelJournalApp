@@ -1,21 +1,24 @@
 package com.example.traveljornal;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+
+import com.example.traveljornal.databaseclasses.AppDatabase;
+import com.example.traveljornal.databaseclasses.User;
+import androidx.room.Query;
 
 import com.example.traveljornal.databaseclasses.AppDatabase;
 import com.example.traveljornal.databaseclasses.DatabaseAccessInterface;
@@ -177,9 +180,19 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private boolean isAccountValid(String user, String pass) {
-        if (user.equals(TestUser) && pass.equals(TestPass)) {
-            return true;
+        AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
+        List<User> listOfUsers = db.DatabaseAccessInterface().getAllUsers();
+        System.out.println(listOfUsers);
+        boolean flag = false;
+        for (int i = 0; i < listOfUsers.size(); i++)
+        {
+                User x = listOfUsers.get(i);
+                if(x.username.equals(user)) {
+                    flag = true;
+                    break;
+                }
         }
-        return false;
+        return flag;
+
     }
 }

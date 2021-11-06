@@ -20,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText userId;
     private EditText email;
     private EditText password;
-
+    private EditText username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -31,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.emailTextField);
         password = (EditText) findViewById(R.id.passwordTextField);
         submit = findViewById(R.id.doneButton);
+        username = findViewById(R.id.usernameTextField);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,20 +40,22 @@ public class RegisterActivity extends AppCompatActivity {
                 String inputFullName = fullName.getText().toString();
                 String inputEmail = email.getText().toString();
                 String inputPassword = password.getText().toString();
+                String inputUserName = username.getText().toString();
                 if (inputUserID.isEmpty() || inputFullName.isEmpty() || inputEmail.isEmpty() ||inputPassword.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Please enter all details.", Toast.LENGTH_SHORT).show();
                 }
-                saveNewUser(inputUserID, inputFullName, inputEmail, inputPassword);
+                saveNewUser(inputUserID, inputFullName, inputEmail, inputPassword, inputUserName);
 
 
             }
         });
     }
 
-    private void saveNewUser(String userID, String fullName, String email, String password) {
+    private void saveNewUser(String userID, String fullName, String email, String password, String username) {
         AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
         User user =  new User();
         user.FullName = fullName;
+        user.username = username;
         user.email = email;
         user.password = password;
         user.id = userID;

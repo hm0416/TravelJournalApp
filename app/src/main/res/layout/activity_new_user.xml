@@ -7,6 +7,35 @@
     android:background="#76D7C4"
     tools:context=".RegisterActivity">
 
+    <EditText
+        android:id="@+id/passwordTextField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtView"
+        app:layout_constraintVertical_bias="0.563" />
+
+    <EditText
+        android:id="@+id/usernameTextField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="UserName"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtView"
+        app:layout_constraintVertical_bias="0.441" />
+
     <TextView
         android:id="@+id/txtView"
         android:layout_width="wrap_content"
@@ -26,57 +55,42 @@
         android:id="@+id/doneButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="436dp"
+        android:layout_marginBottom="164dp"
         android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.687"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.789"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/userIDTextField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="User ID"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/passwordTextField"
+        app:layout_constraintBottom_toTopOf="@+id/fullNameTextField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView"
-        app:layout_constraintVertical_bias="0.493" />
+        app:layout_constraintTop_toBottomOf="@+id/txtView" />
 
     <EditText
         android:id="@+id/fullNameTextField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
         android:ems="10"
         android:hint="Full Name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/passwordTextField"
+        app:layout_constraintBottom_toTopOf="@+id/emailTextField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView"
-        app:layout_constraintVertical_bias="0.933" />
-
-    <EditText
-        android:id="@+id/passwordTextField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/doneButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView"
-        app:layout_constraintVertical_bias="0.652" />
+        app:layout_constraintTop_toBottomOf="@+id/txtView" />
 
     <EditText
         android:id="@+id/emailTextField"
@@ -91,8 +105,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtView"
-        app:layout_constraintVertical_bias="0.865" />
-
+        app:layout_constraintVertical_bias="0.509" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
