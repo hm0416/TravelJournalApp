@@ -6,6 +6,7 @@ import android.app.Fragment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,12 +44,14 @@ public class DashboardActivity extends AppCompatActivity {
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fr = new MapsFragment();
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.map, fr).addToBackStack("fragment_maps").commit();
-//                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-//                fragmentTransaction.replace(R.id.map, fr);
-//                fragmentTransaction.commit();
+                Intent intent = new Intent(DashboardActivity.this, MapsActivity.class);
+                startActivity(intent);
+//                Fragment fr = new MapsFragment();
+//                FragmentManager fm = getFragmentManager();
+//                fm.beginTransaction().replace(R.id.map, fr).addToBackStack("fragment_maps").commit();
+////                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+////                fragmentTransaction.replace(R.id.map, fr);
+////                fragmentTransaction.commit();
             }
         });
     }
