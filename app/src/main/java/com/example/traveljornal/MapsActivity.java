@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -34,54 +35,58 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
 
-    //https://stackoverflow.com/questions/44165099/saving-map-marker-location-onmapclick-using-shared-preferences/44166482
-//    public static final String SHARED_PREF_NAME = "plot";
-//    public static final String LONGTITUDE = "long";
-//    public static final String LATITUDE = "lat";
-//    public static final String PLOTTED = "plotted";
-//    private boolean plotted = false;
-//    public static final String LOGGEDIN_SHARED_PREF = "";
-//    public int markerCount = 0;
-//    ArrayList<LatLng> locationArrayList = new ArrayList<>();
     List<LatLng> locationArrayList = new ArrayList<LatLng>();
-    SharedPreferences prefs = null;
     MarkerOptions markerOptions = new MarkerOptions();
     Marker marker = null;
-
-
+    private List<Marker> markerList = new ArrayList<Marker>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-
-
-//        prefs = this.getSharedPreferences("LatLng",MODE_PRIVATE);
-//
-//        if((prefs.contains("Lat")) && (prefs.contains("Lng"))) {
-//            String lat = prefs.getString("Lat", "");
-//            String lng = prefs.getString("Lng", "");
-//            LatLng l = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
-//            mMap.addMarker(new MarkerOptions().position(l));
-//        }
     }
 
-//    @Override
-//    protected void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
-//        super.onSaveInstanceState(savedInstanceState);
-//
-//        savedInstanceState.
-//    }
+    //https://stackoverflow.com/questions/25438043/store-google-maps-markers-in-sharedpreferences
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        SavePreferences();
+    }
+
+    private void SavePreferences(){
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putInt("listSize", markerList.size());
+
+        for(int i = 0; i <markerList.size(); i++){
+            editor.putFloat("lat"+i, (float) markerList.get(i).getPosition().latitude);
+            editor.putFloat("lng"+i, (float) markerList.get(i).getPosition().longitude);
+            editor.putString("title"+i, markerList.get(i).getTitle());
+        }
+
+        editor.commit();
+    }
+
+    private void LoadPreferences(){
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+
+        int size = sharedPreferences.getInt("listSize", 0);
+        for(int i = 0; i < size; i++){
+            double lat = (double) sharedPreferences.getFloat("lat"+i,0);
+            double longit = (double) sharedPreferences.getFloat("lng"+i,0);
+            String title = sharedPreferences.getString("title"+i,"NULL");
+
+            markerList.add(mMap.addMarker(new MarkerOptions().position(new LatLng(lat, longit)).title(title)));
+        }
+    }
 
     /**
      * Manipulates the map once available.
@@ -97,163 +102,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
-        prefs = MapsActivity.this.getSharedPreferences("LatLng",MODE_PRIVATE);
+        LoadPreferences();
 
-        if((prefs.contains("Lat")) && (prefs.contains("Lng")))
-        {
+//        prefs = MapsActivity.this.getSharedPreferences("LatLng",MODE_PRIVATE);
+//
+//        if((prefs.contains("Lat")) && (prefs.contains("Lng")))
+//        {
+//
+//            String lat = prefs.getString("Lat","");
+//            String lng = prefs.getString("Lng","");
+//            LatLng l = new LatLng(Double.parseDouble(lat),Double.parseDouble(lng));
+//
+//            for(int i = 0; i < locationArrayList.size(); i++) {
+//                LatLng latLng = locationArrayList.get(i);
+//                Double lat2 = latLng.latitude;
+//                Double lang2 = latLng.longitude;
+//
+//                LatLng l2 = new LatLng(lat2, lang2);
+//                mMap.addMarker(new MarkerOptions().position(l2));
+//
+//            }
+//
+////            mMap.addMarker(new MarkerOptions().position(l));
+//
+//        }
 
-            String lat = prefs.getString("Lat","");
-            String lng = prefs.getString("Lng","");
-            LatLng l = new LatLng(Double.parseDouble(lat),Double.parseDouble(lng));
-            mMap.addMarker(new MarkerOptions().position(l));
 
-        }
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
 //                MarkerOptions markerOptions = new MarkerOptions();
-//                prefs.edit().putString("Lat",String.valueOf(latLng.latitude)).apply();
-//                prefs.edit().putString("Lng",String.valueOf(latLng.longitude)).apply();
 
                 markerOptions.position(latLng);
                 markerOptions.title(latLng.latitude + " : " + latLng.longitude);
                 locationArrayList.add(latLng);
 
-//                mMap.clear();
-
                 marker = mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
+                markerList.add(mMap.addMarker(new MarkerOptions().position(latLng).title("Marker")));
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
-                prefs.edit().putString("Lat",String.valueOf(latLng.latitude)).apply();
-                prefs.edit().putString("Lng",String.valueOf(latLng.longitude)).apply();
+//                prefs.edit().putString("Lat",String.valueOf(latLng.latitude)).apply(); //saving last clicked country
+//                prefs.edit().putString("Lng",String.valueOf(latLng.longitude)).apply();
 //                markerCount++;
 //
-//                String lat = Double.toString(latLng.latitude);
-//                String lon = Double.toString(latLng.longitude);
-//
-//                SharedPreferences sharedPreferences = MapsActivity.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
-//                editor.putString(LONGTITUDE, lon);
-//                editor.putString(LATITUDE, lat);
-//                editor.commit();
-
-//                prefs.edit().putString("Lat",String.valueOf(latLng.latitude)).commit();
-//                prefs.edit().putString("Lng",String.valueOf(latLng.longitude)).commit();
-
-//                    mMap.clear();
-//                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-//                    mMap.addMarker(markerOptions);
             }
         });
 
-
-//        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//
-//            @Override
-//            public boolean onMarkerClick(Marker arg0) {
-////Your marker removed
-//                marker.remove();
-//                return true;
-//            }
-//        });
-
-//        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-//        Boolean checkedout = sharedPreferences.getBoolean(LOGGEDIN_SHARED_PREF, false);
-//
-//        if (checkedout) {
-//            for(int i = 0; i < markerCount; i++) {
-//                SharedPreferences sharedPreferencess = getSharedPreferences(MapsActivity.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-//                String lon = sharedPreferencess.getString(MapsActivity.LONGTITUDE, "Not Available");
-//                String lat = sharedPreferencess.getString(MapsActivity.LATITUDE, "Not Available");
-//
-//                double lo = Double.parseDouble(lon);
-//                double la = Double.parseDouble(lat);
-//
-//                LatLng resumedPosition = new LatLng(lo, la);
-//
-////
-////            mMap.addMarker(new MarkerOptions().position(resumedPosition).title("Marker"));
-////            mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));
-////            mMap.moveCamera(CameraUpdateFactory.newLatLng(resumedPosition));
-//
-//                mMap.clear();
-//                mMap.addMarker(new MarkerOptions().position(resumedPosition).draggable(false));
-//                mMap.moveCamera(CameraUpdateFactory.newLatLng(resumedPosition));
-//            }
-
-
-//        }
-
-
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker arg0) {
+                //Your marker removed
+                marker.remove();
+                return true;
+            }
+        });
     }
-
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//
-//        try {
-//            // Modes: MODE_PRIVATE, MODE_WORLD_READABLE, MODE_WORLD_WRITABLE
-//            FileOutputStream output = openFileOutput("latlngpoints.txt",
-//                    Context.MODE_APPEND);
-//            DataOutputStream dout = new DataOutputStream(output);
-//            dout.writeInt(locationArrayList.size()); // Save line count
-//            for (LatLng point : locationArrayList) {
-//                dout.writeUTF(point.latitude + "," + point.longitude);
-//                Log.v("write", point.latitude + "," + point.longitude);
-//            }
-//            dout.flush(); // Flush stream ...
-//            dout.close(); // ... and close.
-//        } catch (IOException exc) {
-//            exc.printStackTrace();
-//        }
-//    }
-//
-//    private void loadMarkers(List<LatLng> listOfPoints) {
-//        int i=listOfPoints.size();
-//        while(i>0){
-//            i--;
-//            double Lat=listOfPoints.get(i).latitude;
-//            double Lon=listOfPoints.get(i).longitude;
-//            MarkerOptions mp = new MarkerOptions();
-//
-//            LatLng point = new LatLng(Lat, Lon);
-//            mp.position(point);
-//
-//            mp.title("my previous position");
-//
-//
-//            mMap.addMarker(new MarkerOptions().position(point).title(point.toString()));
-//
-////            mMap.addMarker(mp);
-//
-//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-//                    point, 16));
-//        }
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//
-//        try {
-//            FileInputStream input = openFileInput("latlngpoints.txt");
-//            DataInputStream din = new DataInputStream(input);
-//            int sz = din.readInt(); // Read line count
-//            for (int i = 0; i < sz; i++) {
-//                String str = din.readUTF();
-//                Log.v("read", str);
-//                String[] stringArray = str.split(",");
-//                double latitude = Double.parseDouble(stringArray[0]);
-//                double longitude = Double.parseDouble(stringArray[1]);
-//                locationArrayList.add(new LatLng(latitude, longitude));
-//            }
-//            din.close();
-//            loadMarkers(locationArrayList);
-//        } catch (IOException exc) {
-//            exc.printStackTrace();
-//        }
-//    }
 }
