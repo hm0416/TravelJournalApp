@@ -30,7 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity{
     public static AppDatabase appDatabase;
     private UserListAdapter userListAdapter;
-    private EditText username; //private so not accessed from other files
+    public EditText username; //private so not accessed from other files
     private EditText password;
     private Button login;
     private Button deleteUser;
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity{
                         Toast.makeText(MainActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
                         //code to go to dashboard
                         Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                        intent.putExtra(Intent.EXTRA_TEXT, username.getText().toString());
                         startActivity(intent);
                     }
                 }
@@ -140,6 +141,10 @@ public class MainActivity extends AppCompatActivity{
         AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
         List<User> userList = db.DatabaseAccessInterface().getAllUsers();
         userListAdapter.setUserList(userList);
+    }
+
+    public String getCurrentUser() {
+        return username.getText().toString();
     }
 
     @Override

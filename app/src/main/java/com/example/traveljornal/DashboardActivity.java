@@ -45,6 +45,8 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DashboardActivity.this, MapsActivity.class);
+                String user = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+                intent.putExtra(Intent.EXTRA_TEXT, user);
                 startActivity(intent);
 //                Fragment fr = new MapsFragment();
 //                FragmentManager fm = getFragmentManager();

@@ -12,6 +12,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.traveljornal.databaseclasses.AppDatabase;
+import com.example.traveljornal.databaseclasses.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -24,7 +26,9 @@ import com.example.traveljornal.databinding.ActivityMapsBinding;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +43,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     MarkerOptions markerOptions = new MarkerOptions();
     Marker marker = null;
     private List<Marker> markerList = new ArrayList<Marker>();
+    public MainActivity mainAct;
+    List<String> fileNames = new ArrayList<String>();
+    File directory;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +65,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        SavePreferences();
+        try {
+            SavePreferences();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void SavePreferences(){
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    private void SavePreferences() throws IOException {
+        //check which user is logged in
+        // create a file with the name being set to username of user currently logged in
+//        String currentUser = mainAct.getCurrentUser();
+
+        String currentUser = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        String fileNameString = currentUser; //sets file name to be username
+        if (fileNameString.isEmpty()) {
+            directory = getFilesDir();
+        }
+        else {
+            directory = getDir(fileNameString, MODE_PRIVATE);
+        }
+        File[] files = directory.listFiles();
+        FileOutputStream fos = openFileOutput(fileNameString, Context.MODE_PRIVATE);
+        fos.write(internalStorageBinding.saveFileEditText.getText().toString().getBytes());
+        fos.close();
+
+
+        fileNames.add(fileNameString);
+        SharedPreferences sharedPreferences1 = getSharedPreferences(fileNameString, MODE_PRIVATE);
+
+//        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences1.edit();
 
         editor.putInt("listSize", markerList.size());
-
         for(int i = 0; i <markerList.size(); i++){
             editor.putFloat("lat"+i, (float) markerList.get(i).getPosition().latitude);
             editor.putFloat("lng"+i, (float) markerList.get(i).getPosition().longitude);
@@ -76,16 +108,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void LoadPreferences(){
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+//        SharedPreferences sharedPreferences1 = getSharedPreferences(fileNameString, MODE_PRIVATE);
 
-        int size = sharedPreferences.getInt("listSize", 0);
-        for(int i = 0; i < size; i++){
-            double lat = (double) sharedPreferences.getFloat("lat"+i,0);
-            double longit = (double) sharedPreferences.getFloat("lng"+i,0);
-            String title = sharedPreferences.getString("title"+i,"NULL");
+        //loop thru all files created in internal storage, find the one that equals current user then...
+        String currentUser = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
+        List<User> userList = db.DatabaseAccessInterface().getAllUsers();
 
-            markerList.add(mMap.addMarker(new MarkerOptions().position(new LatLng(lat, longit)).title(title)));
+        //go thru sp files, find file with same name as current user, then get data from that file
+
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).username == currentUser) {
+                //        String fileNameString = sharedPreferencesBinding.fileNameEditView.getText().toString();
+                SharedPreferences sharedPreferences = getSharedPreferences(currentUser, MODE_PRIVATE);
+
+//            SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+
+                int size = sharedPreferences.getInt("listSize", 0);
+                for(int j = 0; j < size; j++){
+                    double lat = (double) sharedPreferences.getFloat("lat"+i,0);
+                    double longit = (double) sharedPreferences.getFloat("lng"+i,0);
+                    String title = sharedPreferences.getString("title"+i,"NULL");
+
+                    markerList.add(mMap.addMarker(new MarkerOptions().position(new LatLng(lat, longit)).title(title)));
+                }
+            }
+                SharedPreferences sharedPreferences1 = getPreferences(MODE_PRIVATE);
+                int size = sharedPreferences1.getInt("listSize", 0);
+                for(int j = 0; j < size; j++){
+                    double lat = (double) sharedPreferences1.getFloat("lat"+i,0);
+                    double longit = (double) sharedPreferences1.getFloat("lng"+i,0);
+                    String title = sharedPreferences1.getString("title"+i,"NULL");
+
+                    markerList.add(mMap.addMarker(new MarkerOptions().position(new LatLng(lat, longit)).title(title)));
+                }
         }
+
     }
 
     /**
