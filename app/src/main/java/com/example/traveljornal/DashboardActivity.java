@@ -26,19 +26,19 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        search = (TextView) findViewById(R.id.searchTxt);
-        country = (Button) findViewById(R.id.countryBtn) ;
-        country.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fr = new CountryFragment();
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.container, fr).addToBackStack("fragment_country").commit();
-                country.setVisibility(View.GONE);
-                search.setVisibility(View.GONE);
-
-            }
-        });
+//        search = (TextView) findViewById(R.id.searchTxt);
+//        country = (Button) findViewById(R.id.countryBtn) ;
+//        country.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Fragment fr = new CountryFragment();
+//                FragmentManager fm = getFragmentManager();
+//                fm.beginTransaction().replace(R.id.container, fr).addToBackStack("fragment_country").commit();
+//                country.setVisibility(View.GONE);
+//                search.setVisibility(View.GONE);
+//
+//            }
+//        });
 
         mapBtn = (Button) findViewById(R.id.mapButton);
         mapBtn.setOnClickListener(new View.OnClickListener() {

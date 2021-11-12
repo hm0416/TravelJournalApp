@@ -8,50 +8,32 @@
 
     <Button
         android:id="@+id/mapButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:layout_height="73dp"
+        android:layout_marginBottom="196dp"
         android:text="Map View"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/searchTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search:"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/countryBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Greece"
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="312dp"
+        android:layout_height="516dp"
+        android:text="Map View Instructions:
+        - Click the 'Map View' button to view the world map
+
+        - Click on any country you have visited and a marker will be placed!"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchTxt"
-        app:layout_constraintVertical_bias="0.237" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.468" />
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="398dp"
-        android:layout_height="772dp"
-        app:layout_constraintBottom_toTopOf="@+id/mapButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
-<!--    <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--        xmlns:tools="http://schemas.android.com/tools"-->
 <!--        android:id="@+id/map"-->
 <!--        android:name="com.google.android.gms.maps.SupportMapFragment"-->
