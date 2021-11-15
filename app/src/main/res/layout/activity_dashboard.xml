@@ -39,7 +39,7 @@
         - Click the 'Map View' button to view the world map\n
 
         - Click on any country you have visited and a marker will be placed!\n"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.355"

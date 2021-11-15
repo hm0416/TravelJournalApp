@@ -62,20 +62,20 @@ public class MainActivity extends AppCompatActivity{
         username = (EditText) findViewById(R.id.usernameTextField);
         password = (EditText) findViewById(R.id.passTextField);
 
-        deleteUser = findViewById(R.id.deleteUserButton);
-        deleteUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content,  new DeleteUserFragment())
-                        .addToBackStack("fragment_delete_user") // name can be null
-                        .commit();
-                        username.setVisibility(View.GONE);
-                        password.setVisibility(View.GONE);
-            }
-        });
+//        deleteUser = findViewById(R.id.deleteUserButton);
+//        deleteUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.content,  new DeleteUserFragment())
+//                        .addToBackStack("fragment_delete_user") // name can be null
+//                        .commit();
+//                        username.setVisibility(View.GONE);
+//                        password.setVisibility(View.GONE);
+//            }
+//        });
 
         login = findViewById(R.id.loginButton);
 
