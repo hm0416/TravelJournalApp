@@ -193,8 +193,11 @@ public class MainActivity extends AppCompatActivity{
         {
                 User x = listOfUsers.get(i);
                 if(x.username.equals(user)) {
-                    flag = true;
-                    break;
+                    if(x.password.equals(pass))
+                    {
+                        flag = true;
+                        break;
+                    }
                 }
         }
         return flag;

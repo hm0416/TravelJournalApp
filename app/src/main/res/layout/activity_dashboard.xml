@@ -4,34 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D4F4DD"
     tools:context=".DashboardActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.287"
+        app:srcCompat="@drawable/map" />
 
     <Button
         android:id="@+id/mapButton"
         android:layout_width="175dp"
         android:layout_height="73dp"
-        android:layout_marginBottom="196dp"
+        android:layout_marginBottom="44dp"
         android:text="Map View"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="312dp"
-        android:layout_height="516dp"
-        android:text="Map View Instructions:
-        - Click the 'Map View' button to view the world map
+        android:layout_width="304dp"
+        android:layout_height="449dp"
+        android:maxLines="5"
+        android:text="Map View Instructions:\n
+        - Click the 'Map View' button to view the world map\n
 
-        - Click on any country you have visited and a marker will be placed!"
-        android:textSize="24sp"
+        - Click on any country you have visited and a marker will be placed!\n"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
+        app:layout_constraintVertical_bias="0.333" />
 
     <!--    <fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--        xmlns:tools="http://schemas.android.com/tools"-->
