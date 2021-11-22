@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        lang = (Button) findViewById(R.id.langBtn);
+        lang = (Button) findViewById(R.id.langBtn); //https://stackoverflow.com/questions/46051697/how-can-i-change-strings-xml-by-clicking-a-button
         lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
