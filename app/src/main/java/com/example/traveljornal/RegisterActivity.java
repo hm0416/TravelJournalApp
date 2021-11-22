@@ -1,6 +1,7 @@
 package com.example.traveljornal;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.traveljornal.databaseclasses.AppDatabase;
 import com.example.traveljornal.databaseclasses.User;
 import com.example.traveljornal.databaseclasses.DatabaseAccessInterface;
+
+import java.util.Locale;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private Button submit;
@@ -21,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText username;
+    private Button lang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -47,6 +53,19 @@ public class RegisterActivity extends AppCompatActivity {
                 saveNewUser(inputUserID, inputFullName, inputEmail, inputPassword, inputUserName);
 
 
+            }
+        });
+
+        lang = (Button) findViewById(R.id.loginBtnReg);
+        lang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Configuration config = getBaseContext().getResources().getConfiguration();
+                Locale locale = new Locale("es");
+                Locale.setDefault(locale);
+                config.locale = locale;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                recreate();
             }
         });
     }

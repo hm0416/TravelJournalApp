@@ -13,4 +13,28 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+
+    <string name="welcome">Welcome!</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="update">Update</string>
+    <string name="change">Change Language \nTo Spanish</string>
+
+    <string name="mapView">Map View</string>
+    <string name="instructions">"Map View Instructions:\n - Click the 'Map View' button to view the world map\n - Click on any country you have visited and a marker will be placed!\n"</string>
+
+    <string name="userID">User ID</string>
+    <string name="fullName">Full Name</string>
+    <string name="email">Email</string>
+
+    <string name="regWelcome">Hi New \nUser!</string>
+    <string name="done">Done</string>
+
+    <string name="updateWelcome">Update Password</string>
+    <string name="newPass">New Password</string>
+
+
 </resources>

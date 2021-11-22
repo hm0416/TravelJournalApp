@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">TravelJornal</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+    <string name="delete_user">Borrar usuario</string>
+    <string name="title_activity_update">Actividad de actualización</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Primer fragmento</string>
+    <string name="second_fragment_label">Segundo fragmento</string>
+    <string name="next">Próximo</string>
+    <string name="previous">Previo</string>
+
+    <string name="hello_first_fragment">Hola primer fragmento</string>
+    <string name="hello_second_fragment">Hola segundo fragmento. Arg: %1$s</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
+    <string name="welcome">Bienvenido!</string>
+    <string name="login">Acceso</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="register">Registrarse</string>
+    <string name="update">Actualizar</string>
+    <string name="change">Cambiar idioma \nAl español</string>
+
+    <string name="mapView">Vista del mapa</string>
+    <string name="instructions">"Instrucciones de vista de mapa: \n- Haga clic en el botón 'Vista de mapa' para ver el mapa mundial \n- ¡Haga clic en cualquier país que haya visitado y se colocará un marcador! \n"</string>
+
+    <string name="userID">ID de usuario</string>
+    <string name="fullName">Nombre completo</string>
+    <string name="email">Correo electrónico</string>
+
+    <string name="regWelcome">¡Hola nuevo \nusuario!</string>
+    <string name="done">Hecho</string>
+
+    <string name="updateWelcome">Actualiza contraseña</string>
+    <string name="newPass">Nueva contraseña</string>
+</resources>

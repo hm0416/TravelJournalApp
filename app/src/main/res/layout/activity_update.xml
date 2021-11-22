@@ -11,7 +11,7 @@
         android:id="@+id/updateTxtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Password"
+        android:text="@string/updateWelcome"
         android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,7 +26,7 @@
         android:id="@+id/doneButtonForUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="@string/done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="UserID"
+        android:hint="@string/userID"
         android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/doneButtonForUpdate"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="New Password"
+        android:hint="@string/newPass"
         android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/doneButtonForUpdate"
@@ -59,6 +59,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/updateTxtView"
         app:layout_constraintVertical_bias="0.529" />
+
+    <Button
+        android:id="@+id/loginBtnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/doneButtonForUpdate"
+        app:layout_constraintVertical_bias="0.16" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

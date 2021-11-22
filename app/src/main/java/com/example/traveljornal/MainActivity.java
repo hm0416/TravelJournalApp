@@ -1,7 +1,11 @@
 package com.example.traveljornal;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +29,7 @@ import com.example.traveljornal.databaseclasses.DatabaseAccessInterface;
 import com.example.traveljornal.databaseclasses.User;
 
 import java.util.List;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -38,6 +43,7 @@ public class MainActivity extends AppCompatActivity{
     private String TestPass = "12345";
     private Button register;
     private Button update;
+    private Button lang;
     FragmentManager fm;
     boolean isAccValid = false;
 
@@ -123,6 +129,55 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 // code to go to the register activity
                 startActivityForResult(new Intent(MainActivity.this, UpdateActivity.class), 100);
+            }
+        });
+
+        lang = (Button) findViewById(R.id.langBtn);
+        lang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Configuration config = getBaseContext().getResources().getConfiguration();
+                Locale locale = new Locale("es");
+                Locale.setDefault(locale);
+                config.locale = locale;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                recreate();
+//                Resources res = getResources();
+//                DisplayMetrics dm = res.getDisplayMetrics();
+//                Configuration conf = res.getConfiguration();
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//                    conf.setLocale(new Locale("es"));
+//                } else {
+//                    conf.locale = new Locale("es");
+//                }
+//                res.updateConfiguration(conf, dm);
+//                Locale locale = new Locale("es");
+//                Locale.setDefault(locale);
+//                Configuration config = new Configuration();
+//                config.locale = locale;
+//                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+//                Button but = (Button) v;
+//                Resources res = getResources();
+//                String current = res.getConfiguration().locale.getCountry();
+//                Log.i("Current", current);
+//                String localeString = new String(current);
+//                if (but.equals(lang)) {
+//                    localeString = "ES";
+//                }
+//                Log.i("Clicked", localeString);
+//
+//                if (!current.equalsIgnoreCase(localeString) && localeString.length() > 0) {
+//                    // Change locale settings in the app.
+//                    DisplayMetrics dm = res.getDisplayMetrics();
+//                    android.content.res.Configuration conf = res.getConfiguration();
+//                    conf.locale = new Locale(localeString.toLowerCase());
+//                    res.updateConfiguration(conf, dm);
+////                    //refresh menu
+////                    setGridView()
+////                    //added this line to get refreshed listener
+////                    changeLanguageListener();
+//                }
             }
         });
 
