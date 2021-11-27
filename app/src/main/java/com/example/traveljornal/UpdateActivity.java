@@ -43,7 +43,7 @@ public class UpdateActivity extends AppCompatActivity {
             }
         });
 
-        lang = (Button) findViewById(R.id.loginBtnUpdate);
+        lang = (Button) findViewById(R.id.langBtnUpdate);
         lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

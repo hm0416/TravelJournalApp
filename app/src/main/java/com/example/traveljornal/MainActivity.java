@@ -24,7 +24,6 @@ import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity{
-    private UserListAdapter userListAdapter;
     public EditText username; //private so not accessed from other files
     private EditText password;
     private Button login;
@@ -37,20 +36,9 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //appDatabase = Room.databaseBuilder(this,AppDatabase.class,"userinfo").allowMainThreadQueries().build();
 
         Log.d("Login page", "OnCreate() method launched");
 
-        register = findViewById(R.id.registerButton);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // code to go to the register activity
-                startActivityForResult(new Intent(MainActivity.this, RegisterActivity.class), 100);
-                initRecyclerView();
-                loadUserList();
-            }
-        });
         username = (EditText) findViewById(R.id.usernameTextField);
         password = (EditText) findViewById(R.id.passTextField);
 
@@ -89,8 +77,6 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 // code to go to the register activity
                 startActivityForResult(new Intent(MainActivity.this, RegisterActivity.class), 100);
-                initRecyclerView();
-                loadUserList();
             }
         });
 
@@ -118,28 +104,6 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    private void initRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView2);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-        userListAdapter = new UserListAdapter(this);
-        recyclerView.setAdapter(userListAdapter);
-    }
-
-    private void loadUserList(){
-        AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
-        List<User> userList = db.DatabaseAccessInterface().getAllUsers();
-        userListAdapter.setUserList(userList);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == 100) {
-            loadUserList();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
     @Override
     protected void onStart() {
         super.onStart();

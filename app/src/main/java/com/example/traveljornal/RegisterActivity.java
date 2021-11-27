@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        lang = (Button) findViewById(R.id.loginBtnReg);
+        lang = (Button) findViewById(R.id.langBtnReg);
         lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

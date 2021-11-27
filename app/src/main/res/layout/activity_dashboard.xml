@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="@+id/instructionsTxtView"
         app:layout_constraintHorizontal_bias="0.355"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="@+id/instructionsTxtView"
+        app:layout_constraintTop_toTopOf="@+id/instructionsTxtView"
         app:layout_constraintVertical_bias="0.287"
         app:srcCompat="@drawable/map" />
 
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/instructionsTxtView"
         android:layout_width="338dp"
         android:layout_height="462dp"
         android:maxLines="5"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/change"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintBottom_toTopOf="@+id/instructionsTxtView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
